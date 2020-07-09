@@ -20,6 +20,9 @@ namespace CharacterManager.APP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddConfigurations(Configuration);
+            services.AddServices();
+            services.AddRepositories();
+            services.AddMappers();
             services.AddDatabase(Configuration);
             
             services.AddControllers();

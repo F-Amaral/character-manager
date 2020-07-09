@@ -1,4 +1,9 @@
-﻿using CharacterManager.Infra.Commons.Configurations;
+﻿using CharacterManager.APP.Mappers.TestMappers;
+using CharacterManager.Application.Interfaces;
+using CharacterManager.Application.Services;
+using CharacterManager.Domain.DataContracts;
+using CharacterManager.Domain.Mongo.Repositories;
+using CharacterManager.Infra.Commons.Configurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,16 +15,20 @@ namespace CharacterManager.APP.Extensions
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
+            services.AddScoped<ITestService, TestService>();
             return services;
         }
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
+            services.AddScoped<ITestRepository, TestRepository>();
             return services;
         }
 
         public static IServiceCollection AddMappers(this IServiceCollection services)
         {
+            services.AddScoped<TestToTestDTOMapper>();
+            services.AddScoped<TestDTOToTestMapper>();
             return services;
         }
 
