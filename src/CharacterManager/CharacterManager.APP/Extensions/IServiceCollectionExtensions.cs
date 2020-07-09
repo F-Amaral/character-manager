@@ -1,9 +1,8 @@
-﻿using CharacterManager.Domain.SQL.DataContext;
-using CharacterManager.Infra.Common.Configurations;
+﻿using CharacterManager.Infra.Commons.Configurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace CharacterManager.APP.Extensions
 {
@@ -26,10 +25,12 @@ namespace CharacterManager.APP.Extensions
 
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<DefaultContext>(options =>
-                options
-                .UseLazyLoadingProxies()
-                .UseMySql(configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<MongoDBSettings>(configuration.GetSection("MongoDbSettings"));
+
+            services.AddSingleton<MongoDBSettings>(serviceProvider =>
+                serviceProvider.GetRequiredService<IOptions<MongoDBSettings>>().Value);
+
+
             return services;
         }
 

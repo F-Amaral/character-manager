@@ -1,4 +1,4 @@
-﻿namespace CharacterManager.Infra.Common.Configurations
+﻿namespace CharacterManager.Infra.Commons.Configurations
 {
     public class Auth0Configurations
     {
