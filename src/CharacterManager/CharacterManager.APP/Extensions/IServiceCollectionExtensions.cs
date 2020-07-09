@@ -23,6 +23,15 @@ namespace CharacterManager.APP.Extensions
             return services;
         }
 
+        public static IServiceCollection AddConfigurations(this IServiceCollection services, IConfiguration configuration)
+        {
+            var mongoDBSettings = new MongoDBSettings();
+            new ConfigureFromConfigurationOptions<MongoDBSettings>(configuration.GetSection("MongoDBSettings"))
+                .Configure(mongoDBSettings);
+            
+            return services;
+        }
+
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<MongoDBSettings>(configuration.GetSection("MongoDbSettings"));
