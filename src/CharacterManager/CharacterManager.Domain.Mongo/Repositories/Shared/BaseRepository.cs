@@ -42,6 +42,11 @@ namespace CharacterManager.Domain.Mongo.Repositories.Shared
             return _collection.Find(filterExpression).ToEnumerable();
         }
 
+        public async Task<IEnumerable<TEntity>> FilterByAsync(Expression<Func<TEntity, bool>> filterExpression)
+        {
+            return await _collection.Find(filterExpression).ToListAsync();
+        }
+
         public virtual IEnumerable<TProjected> FilterBy<TProjected>(
             Expression<Func<TEntity, bool>> filterExpression,
             Expression<Func<TEntity, TProjected>> projectionExpression)
@@ -59,17 +64,15 @@ namespace CharacterManager.Domain.Mongo.Repositories.Shared
             return await _collection.Find(filterExpression).FirstOrDefaultAsync();
         }
 
-        public virtual TEntity FindById(string id)
+        public virtual TEntity FindById(Guid id)
         {
-            var objectId = new Guid(id);
-            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, objectId);
+            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, id);
             return _collection.Find(filter).SingleOrDefault();
         }
 
-        public virtual async Task<TEntity> FindByIdAsync(string id)
+        public virtual async Task<TEntity> FindByIdAsync(Guid id)
         {
-            var objectId = new Guid(id);
-            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, objectId);
+            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, id);
             return await _collection.Find(filter).SingleOrDefaultAsync();
         }
 
@@ -117,17 +120,15 @@ namespace CharacterManager.Domain.Mongo.Repositories.Shared
             await _collection.FindOneAndDeleteAsync(filterExpression);
         }
 
-        public virtual void DeleteById(string id)
+        public virtual void DeleteById(Guid id)
         {
-            var objectId = new Guid(id);
-            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, objectId);
+            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, id);
             _collection.FindOneAndDelete(filter);
         }
 
-        public virtual async Task DeleteByIdAsync(string id)
+        public virtual async Task DeleteByIdAsync(Guid id)
         {
-            var objectId = new Guid(id);
-            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, objectId);
+            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, id);
             await _collection.FindOneAndDeleteAsync(filter);
         }
 
@@ -140,5 +141,7 @@ namespace CharacterManager.Domain.Mongo.Repositories.Shared
         {
             await _collection.DeleteManyAsync(filterExpression);
         }
+
+   
     }
 }

@@ -13,6 +13,9 @@ namespace CharacterManager.Domain.DataContracts.Shared
         IEnumerable<TEntity> FilterBy(
             Expression<Func<TEntity, bool>> filterExpression);
 
+        Task<IEnumerable<TEntity>> FilterByAsync(
+            Expression<Func<TEntity, bool>> filterExpression);
+
         IEnumerable<TProjected> FilterBy<TProjected>(
             Expression<Func<TEntity, bool>> filterExpression,
             Expression<Func<TEntity, TProjected>> projectionExpression);
@@ -21,9 +24,9 @@ namespace CharacterManager.Domain.DataContracts.Shared
 
         Task<TEntity> FindOneAsync(Expression<Func<TEntity, bool>> filterExpression);
 
-        TEntity FindById(string id);
+        TEntity FindById(Guid id);
 
-        Task<TEntity> FindByIdAsync(string id);
+        Task<TEntity> FindByIdAsync(Guid id);
 
         void InsertOne(TEntity document);
 
@@ -41,9 +44,9 @@ namespace CharacterManager.Domain.DataContracts.Shared
 
         Task DeleteOneAsync(Expression<Func<TEntity, bool>> filterExpression);
 
-        void DeleteById(string id);
+        void DeleteById(Guid id);
 
-        Task DeleteByIdAsync(string id);
+        Task DeleteByIdAsync(Guid id);
 
         void DeleteMany(Expression<Func<TEntity, bool>> filterExpression);
 

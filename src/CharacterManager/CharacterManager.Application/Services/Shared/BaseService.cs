@@ -23,52 +23,41 @@ namespace CharacterManager.Application.Services.Shared
         {
             entity.Id = Guid.NewGuid();
             entity.CreatedAt = DateTime.Now;
-            await _repository.AddAsync(entity);
-            await _repository.SaveChangesAsync();
+            await _repository.InsertOneAsync(entity);
             return entity;
         }
 
-        public async Task<IEnumerable<TEntity>> AddCollectionAsync(IEnumerable<TEntity> entities)
+        public async Task<ICollection<TEntity>> AddCollectionAsync(ICollection<TEntity> entities)
         {
             foreach (var entity in entities)
             {
                 entity.Id = Guid.NewGuid();
                 entity.CreatedAt = DateTime.Now;
             }
-            await _repository.AddCollectionAsync(entities);
-            await _repository.SaveChangesAsync();
+            await _repository.InsertManyAsync(entities);
             return entities;
         }
 
         public async Task DeleteByIdAsync(Guid id)
         {
-            await _repository.RemoveByIdAsync(id);
-            await _repository.SaveChangesAsync();
+            await _repository.DeleteByIdAsync(id);
 
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _repository.GetAllAsync();
+            return await _repository.FilterByAsync(_ => true);
         }
 
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await _repository.GetByIdAsync(id);
+            return await _repository.FindByIdAsync(id);
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            await _repository.UpdateAsync(entity);
-            await _repository.SaveChangesAsync();
+            await _repository.ReplaceOneAsync(entity);
             return entity;
-        }
-
-        public async Task<IEnumerable<TEntity>> UpdateCollectionAsync(IEnumerable<TEntity> entities)
-        {
-            await _repository.UpdateCollectionAsync(entities);
-            await _repository.SaveChangesAsync();
-            return entities;
         }
     }
 }
