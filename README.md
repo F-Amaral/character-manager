@@ -44,7 +44,7 @@ Map every command level up provided by a feature that have to be applied to a ch
 ```json
 {
     "feature_bitwise": 1,
-    "feature_name": "sword",
+    "feature_name": "fighter",
     "level_ups": [
         {
             "level": 1,
