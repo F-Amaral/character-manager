@@ -3,7 +3,7 @@
 # Data Structure
 
 ## Command Level Up
-The bonus applied to a character. When a character was a feature, when the character reaches certain level, the feature may provide some bonus stats, 
+The bonus applied to a character. When a character has a feature, when the character reaches certain level, the feature may provide some bonus stats, 
 choices or new features.
 
 ```json
