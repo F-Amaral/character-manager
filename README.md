@@ -68,7 +68,7 @@ Represents a character
 }
 ```
 
-## Behaviork
+## Behavior
 
 1. When a character choose to be a human, his feature_bitwise receive the **human** bitwise. After that, every level up applied to this
 character may trigger a command level up. The first run will apply the current bonus, a:s +1 in every ability check (from d&d player`s handbook).
