@@ -38,8 +38,6 @@ choices or new features.
 }
 ```
 
-Archery, Defense, Dueling, Great Weapon Fighting, Protection or Two-Weapon Fighting
-
 ## Feature Command Level Up Array
 Map every command level up provided by a feature that have to be applied to a character after a level up.
 
