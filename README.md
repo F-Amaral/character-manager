@@ -27,16 +27,18 @@ choices or new features.
     "choices": [
         {
             "or": [
-                "sword",
-                "axe"
+                "archery",
+                "dueling",
+                "great-weapon-fighting",
+                "protection",
+                "two-weapon-fighting"
             ]
         }
-    ],
-    "features": [
-        "dagger"
     ]
 }
 ```
+
+Archery, Defense, Dueling, Great Weapon Fighting, Protection or Two-Weapon Fighting
 
 ## Feature Command Level Up Array
 Map every command level up provided by a feature that have to be applied to a character after a level up.
@@ -68,7 +70,7 @@ Represents a character
 }
 ```
 
-## Behavior
+## Behaviork
 
 1. When a character choose to be a human, his feature_bitwise receive the **human** bitwise. After that, every level up applied to this
 character may trigger a command level up. The first run will apply the current bonus, a:s +1 in every ability check (from d&d player`s handbook).
