@@ -16,7 +16,7 @@ namespace CharacterManager.Application.Services
                 .ToList();
             
             // INIT Future DB searchs
-            // All this logs would be a query in DB
+            // All this logic would be a query in DB
             var featureCommands = FeatureCommand.GetFighterLevelUp();
             featureCommands.LevelUps.TryGetValue(newLevel, out var commandId);
             
