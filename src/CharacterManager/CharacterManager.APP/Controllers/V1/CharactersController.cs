@@ -22,7 +22,12 @@ namespace CharacterManager.APP.Controllers.V1
         [HttpGet]
         public IActionResult GetCommandLevelUp()
         {
-            var character = new Character(FeatureType.Human, FeatureType.Fighter);
+            var character = new Character
+            {
+                FeatureType = FeatureType.Character | FeatureType.Human | FeatureType.Fighter,
+                Level = 1,
+            };
+            
             var commands = CharacterLevelUpper.GetCommands(character);
             return Created("api/v1/characters/level-up", commands.Select(x => CommandToCommandDtoMapper.Map(x)));
         }

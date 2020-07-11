@@ -6,16 +6,28 @@ namespace CharacterManager.Domain.Models
     {
         public FeatureType FeatureType { get; set; }
         public Dictionary<int, int> LevelUps { get; set; }
-
-        public static FeatureCommand GetFighterLevelUp()
+        
+        public static ICollection<FeatureCommand> GetAllFeatureCommands()
         {
-            return new FeatureCommand
+            return new List<FeatureCommand>
             {
-                FeatureType = FeatureType.Fighter,
-                LevelUps = new Dictionary<int, int>
+                new FeatureCommand
                 {
-                    {1, 0}
+                    FeatureType = FeatureType.Character,
+                    LevelUps = new Dictionary<int, int>
+                    {
+                        {1, 1}
+                    }
+                },
+                new FeatureCommand
+                {
+                    FeatureType = FeatureType.Fighter,
+                    LevelUps = new Dictionary<int, int>
+                    {
+                        {2, 0}
+                    }
                 }
+
             };
         }
     }

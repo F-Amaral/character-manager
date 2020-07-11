@@ -17,24 +17,16 @@ namespace CharacterManager.Application.Services
             
             // INIT Future DB searchs
             // All this logic would be a query in DB
-            var featureCommands = FeatureCommand.GetFighterLevelUp();
-            featureCommands.LevelUps.TryGetValue(newLevel, out var commandId);
-            
-            var commands = Command.GetAllCommands();
-            
-            foreach (var command in commands)
-            {
-                if (commandId == command.Id)
-                {
-                    return new List<Command>
-                    {
-                        command,
-                    };
-                }
-            }
-            // END
+            var allFeatureCommands = FeatureCommand.GetAllFeatureCommands();
 
-            return null;
+            var commandIds =
+                allFeatureCommands.Where(x => featureTypes.Any(y => x.FeatureType.HasFlag(y)))
+                    .Where(x => x.LevelUps.ContainsKey(newLevel))
+                    .Select(x => x.LevelUps.GetValueOrDefault(newLevel));
+
+            var allCommands = Command.GetAllCommands();
+
+            return allCommands.Where(x => commandIds.Any(y => y == x.Id)).ToList();
         }
     }
 }

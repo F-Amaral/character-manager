@@ -20,10 +20,5 @@ namespace CharacterManager.Domain.Models
         public Dictionary<string, SavingThrow> SavingThrows { get; set; }
         public Dictionary<string, ConditionResistance> ConditionResistances { get; set; }
         public Dictionary<string, ConditionApplied> ConditionApplieds { get; set; }
-
-        public Character(FeatureType raceType, FeatureType classType)
-        {
-            FeatureType = raceType | classType;
-        }
     }
 }

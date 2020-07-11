@@ -32,6 +32,46 @@ namespace CharacterManager.Domain.Models
                             }
                         }
                     }
+                },
+                new Command
+                {
+                    Id = 1,
+                    Choices = new Collection<Choice>
+                    {
+                        new Choice
+                        {
+                            Options = new Collection<FeatureType>
+                            {
+                                FeatureType.Dwarf,
+                                FeatureType.Elf,
+                                FeatureType.Halfling,
+                                FeatureType.Human,
+                                FeatureType.Dragonborn,
+                                FeatureType.Gnome,
+                                FeatureType.HalfElf,
+                                FeatureType.HalfOrc,
+                                FeatureType.Tiefling,
+                            }
+                        },
+                        new Choice
+                        {
+                            Options = new Collection<FeatureType>
+                            {
+                                FeatureType.Barbarian,
+                                FeatureType.Bard,
+                                FeatureType.Cleric,
+                                FeatureType.Druid,
+                                FeatureType.Fighter,
+                                FeatureType.Monk,
+                                FeatureType.Paladin,
+                                FeatureType.Ranger,
+                                FeatureType.Rogue,
+                                FeatureType.Sorcerer,
+                                FeatureType.Warlock,
+                                FeatureType.Wizard,
+                            }
+                        },
+                    }
                 }
             };
         }

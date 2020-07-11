@@ -10,7 +10,6 @@ namespace CharacterManager.Domain.Models
         Dwarf = 1,
         Elf = 2,
         Halfling = 4,
-        [Description("Human")]
         Human = 8,
         Dragonborn = 16,
         Gnome = 32,
@@ -23,7 +22,6 @@ namespace CharacterManager.Domain.Models
         Bard = 1024,
         Cleric = 2048,
         Druid = 4096,
-        [Description("Fighter")]
         Fighter= 8192,
         Monk = 16384,
         Paladin = 32768,
@@ -44,5 +42,7 @@ namespace CharacterManager.Domain.Models
         TwoWeaponFighting = 16777216,
         [Description("Archeary")]
         Archeary = 33554432,
+        [Description("Character")]
+        Character = 67108864,
     }
 }
