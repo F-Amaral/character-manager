@@ -1,4 +1,5 @@
-﻿using CharacterManager.APP.Mappers.TestMappers;
+﻿using CharacterManager.APP.Mappers.CommandMappers;
+using CharacterManager.APP.Mappers.TestMappers;
 using CharacterManager.Application.Interfaces;
 using CharacterManager.Application.Services;
 using CharacterManager.Domain.DataContracts;
@@ -16,6 +17,7 @@ namespace CharacterManager.APP.Extensions
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<ITestService, TestService>();
+            services.AddScoped<ICharacterLevelUpper, CharacterLevelUpper>();
             return services;
         }
 
@@ -29,6 +31,7 @@ namespace CharacterManager.APP.Extensions
         {
             services.AddScoped<TestToTestDTOMapper>();
             services.AddScoped<TestDTOToTestMapper>();
+            services.AddScoped<CommandToCommandDTOMapper>();
             return services;
         }
 

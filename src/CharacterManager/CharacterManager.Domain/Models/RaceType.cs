@@ -1,6 +1,6 @@
 namespace CharacterManager.Domain.Models
 {
-    public enum Race
+    public enum RaceType
     {
         Dwarf,
         Elf,

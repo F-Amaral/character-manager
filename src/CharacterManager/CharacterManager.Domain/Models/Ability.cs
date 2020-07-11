@@ -8,10 +8,11 @@ namespace CharacterManager.Domain.Models
         public int Value { get; set; }
         public int Bonus { get; set; }
 
-        public Ability(AbilityType abilityType, int value)
+        public Ability(AbilityType abilityType, int value, int bonus)
         {
             AbilityType = abilityType;
             Value = value;
+            Bonus = bonus;
         }
     }
 }

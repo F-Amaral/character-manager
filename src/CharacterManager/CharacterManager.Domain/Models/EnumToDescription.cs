@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -21,5 +22,10 @@ namespace CharacterManager.Domain.Models
             return value.ToString();
         }
         
+        
+        public static IEnumerable<Enum> GetFlags(Enum e)
+        {
+            return Enum.GetValues(e.GetType()).Cast<Enum>().Where(e.HasFlag);
+        }
     }
 }

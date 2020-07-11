@@ -1,6 +1,6 @@
 namespace CharacterManager.Domain.Models
 {
-    public enum Class
+    public enum ClassType
     {
         Barbarian,
         Bard,
