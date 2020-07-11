@@ -15,8 +15,6 @@ namespace CharacterManager.Application.Services
                 .Cast<FeatureType>()
                 .ToList();
             
-            // INIT Future DB searchs
-            // All this logic would be a query in DB
             var allFeatureCommands = FeatureCommand.GetAllFeatureCommands();
 
             var commandIds =
