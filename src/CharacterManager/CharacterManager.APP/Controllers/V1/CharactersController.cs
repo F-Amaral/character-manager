@@ -1,3 +1,7 @@
+using System.Linq;
+using CharacterManager.APP.Mappers.CommandMappers;
+using CharacterManager.Application.Interfaces;
+using CharacterManager.Application.Services;
 using CharacterManager.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,11 +11,25 @@ namespace CharacterManager.APP.Controllers.V1
     [ApiController]
     public class CharactersController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Create()
+        public readonly ICharacterLevelUpper CharacterLevelUpper;
+        public readonly CommandToCommandDTOMapper CommandToCommandDtoMapper;
+        public CharactersController(ICharacterLevelUpper characterLevelUpper, CommandToCommandDTOMapper mapper)
         {
-            var character = new Character(Race.Human, Class.Barbarian);
-            return Created("api/v1/characters", character);
+            CharacterLevelUpper = characterLevelUpper;
+            CommandToCommandDtoMapper = mapper;
+        }
+        
+        [HttpGet]
+        public IActionResult GetCommandLevelUp()
+        {
+            var character = new Character
+            {
+                FeatureType = FeatureType.Character | FeatureType.Human | FeatureType.Fighter,
+                Level = 0,
+            };
+            
+            var commands = CharacterLevelUpper.GetCommands(character);
+            return Created("api/v1/characters/level-up", commands.Select(x => CommandToCommandDtoMapper.Map(x)));
         }
     }
 }
