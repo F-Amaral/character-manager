@@ -13,10 +13,34 @@ namespace CharacterManager.Domain.Models
             {
                 new FeatureCommand
                 {
-                    FeatureType = FeatureType.Character,
+                    FeatureType = FeatureType.NonCharacter,
                     LevelUps = new Dictionary<int, int>
                     {
                         {1, 1}
+                    }
+                },
+                new FeatureCommand
+                {
+                    FeatureType = FeatureType.Character,
+                    LevelUps = new Dictionary<int, int>
+                    {
+                        {1, 3}
+                    }
+                },
+                new FeatureCommand
+                {
+                    FeatureType = FeatureType.Human,
+                    LevelUps = new Dictionary<int, int>
+                    {
+                        {1, 2}
+                    }
+                },
+                new FeatureCommand
+                {
+                    FeatureType = FeatureType.Fighter,
+                    LevelUps = new Dictionary<int, int>
+                    {
+                        {1, 4}
                     }
                 },
                 new FeatureCommand
@@ -27,7 +51,6 @@ namespace CharacterManager.Domain.Models
                         {2, 0}
                     }
                 }
-
             };
         }
     }

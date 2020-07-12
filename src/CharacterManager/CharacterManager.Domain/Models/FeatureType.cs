@@ -31,18 +31,32 @@ namespace CharacterManager.Domain.Models
         Warlock = 524288,
         Wizard = 1048576,
         
+        // Alignment
+        [Description("Lawful")]
+        Lawful = 2097152,
+        [Description("Neutral")]
+        Neutral = 4194304,
+        [Description("Chaotic")]
+        Chaotic = 8388608,
+        [Description("Good")]
+        Good = 16777216,
+        [Description("Evil")]
+        Evil = 33554432,
+
         // Features
         [Description("Dueling")]
-        Dueling = 2097152,
-        [Description("GreatWeaponFighting")]
-        GreatWeaponFighting = 4194304,
+        Dueling = 67108864,
+        [Description("Great Weapon Fighting")]
+        GreatWeaponFighting = 134217728,
         [Description("Protection")]
-        Protection = 8388608,
-        [Description("TwoWeaponFighting")]
-        TwoWeaponFighting = 16777216,
+        Protection = 268435456,
+        [Description("Two Weapon Fighting")]
+        TwoWeaponFighting = 536870912,
         [Description("Archeary")]
-        Archeary = 33554432,
+        Archeary = 1073741824,
         [Description("Character")]
-        Character = 67108864,
+        Character = 2147483648,
+        [Description("NonCharacter")]
+        NonCharacter = 4294967296
     }
 }

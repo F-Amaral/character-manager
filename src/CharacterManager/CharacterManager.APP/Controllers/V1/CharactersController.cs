@@ -25,7 +25,7 @@ namespace CharacterManager.APP.Controllers.V1
             var character = new Character
             {
                 FeatureType = FeatureType.Character | FeatureType.Human | FeatureType.Fighter,
-                Level = 1,
+                Level = 0,
             };
             
             var commands = CharacterLevelUpper.GetCommands(character);

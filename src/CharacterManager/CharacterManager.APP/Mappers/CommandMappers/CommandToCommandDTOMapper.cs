@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using CharacterManager.APP.DTOs;
 using CharacterManager.APP.Mappers.Shared;
@@ -10,19 +12,39 @@ namespace CharacterManager.APP.Mappers.CommandMappers
     {
         public override CommandDTO Map(Command entry)
         {
-            return new CommandDTO()
+            var commandDto = new CommandDTO
             {
                 Id = entry.Id,
-                SavingThrows = entry.SavingThrows,
-                Abilities = entry.Abilities,
-                Skills = entry.Skills,
-                Choices = entry.Choices.Select(x => new ChoiceDTO
+                ProficiencyBonus = entry.ProficiencyBonus,
+                SkillQuantityToPick = entry.SkillQuantityToPick,
+                Choices = entry.Choices?.Select(x => new ChoiceDTO
                 {
-                    Options = x.Options.Select(y => EnumToDescription
-                        .GetEnumDescription(y))
+                    ChoiceType = EnumToDescription.GetEnumDescription(x.ChoiceType),
+                    Options = x.Options?.Select(y => EnumToDescription
+                            .GetEnumDescription(y))
+                        .ToList(),
+                    PreferenceAbilities = x.PreferenceAbilities?.Select(y => EnumToDescription
+                            .GetEnumDescription(y))
+                        .ToList(),
+                    AbilityDistributionPolicies = x.AbilityDistributionPolicies?.Select(y => EnumToDescription
+                            .GetEnumDescription(y))
                         .ToList()
-                }).ToList()
+                }).ToList(),
+                SavingThrows = entry.SavingThrows?.Select(x => EnumToDescription.GetEnumDescription(x)).ToList(),
+                Skills = entry.Skills?.Select(x => EnumToDescription.GetEnumDescription(x)).ToList(),
             };
+
+            if(entry.Abilities != null)
+            {
+                var abilities = new Dictionary<string, int>();
+                foreach (var ability in entry.Abilities)
+                {
+                    abilities.Add(EnumToDescription.GetEnumDescription(ability.Key), ability.Value);
+                }
+                commandDto.Abilities = abilities;
+            }
+            
+            return commandDto;
         }
     }
 }
